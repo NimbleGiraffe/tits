@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>{% block head_title %} Tits {% endblock %}</title>
+	</head>
+
+	<body>
+		<h1 style='text-align:center'>Login</h1>
+		
+		<div style='text-align:center'>
+			<form action="" method="post">
+				{% csrf_token %}
+				<div>{{ form.email.errors }}<label for="id_email">Email:</label>{{form.email}}</div><br />
+				<div>{{ form.password.errors }}<label for="id_password">Password:</label>{{form.password}}</div><br />
+				<input type="submit" value="Login"/><a href="/">Go back</a>
+			</form>
+		</div>
+	</body>
+
+</html>
