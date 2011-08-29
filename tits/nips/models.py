@@ -20,7 +20,7 @@ class Nipple(models.Model):
 class NippleOpinion(models.Model):
     user = models.ForeignKey(User)
     nipple = models.ForeignKey(Nipple)
-    score = models.IntegerField(min_value=1, max_value=5)
+    score = models.IntegerField()
     comment = models.TextField()
     
     def __unicode__(self):
