@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>{% block head_title %} Tits {% endblock %}</title>
+	</head>
+	
+	<body>
+		<h1 style="text-align:center"><a href="/">Back</a>      <a href="/account/logout/">Logout</a></h1>
+		<h1 style="text-align:center">Freshmen</h1>
+		
+		<div style="text-align: center">
+		<form action="/search/" id="search" method="get" style="">
+			{% csrf_token %}
+			<input id="searchbar" type="text" placeholder="Search..." name="q" value=""/>
+			<input type="submit" value="Search" />
+		</form>
+		</div>
+		
+		{% for i in page.object_list %}
+			<div style="text-align:center" >
+				<a href="/nipple/{{i.object.id}}/">{{ i.object.first_name }} {{ i.object.last_name }}</a><br /><br />
+				<a href="/nipple/{{i.object.id}}/"><img src="{{i.object.image.url}}" width='240' height="180" /></a><br /><br />
+				Votes: {{i.object.votes}}<br /><br />
+				Interests: {{i.object.interests}}<br /><br />
+				Hometown: {{i.object.hometown}} | High School: {{i.object.high_school}}
+			</div><br /><br /><hr />
+		{% endfor %}
+	</body>
+	
+</html>

@@ -148,7 +148,13 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     "account",
     "nips",
+    "haystack",
+    "whoosh",
 )
+
+HAYSTACK_SITECONF = 'tits.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = PROJECT_ROOT + '/whoosh'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

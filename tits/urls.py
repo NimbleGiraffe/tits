@@ -17,6 +17,8 @@ urlpatterns = patterns('',
      
      url(r'^$', 'nips.views.index'),
      url(r'^account/', include('account.urls')),
+     url(r'^nipple/', include('nips.urls')),
+     url(r'^search/', include('haystack.urls')),
 )
 
 if settings.USER != 'wbstueck':

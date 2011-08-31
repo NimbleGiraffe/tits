@@ -24,4 +24,4 @@ class NippleOpinion(models.Model):
     comment = models.TextField()
     
     def __unicode__(self):
-        return self.user.get_full_name() + " gave " + self.nipple.first_name+" "+self.nipple.last_name+" a "+str(score)
+        return self.user.get_full_name() + " gave " + self.nipple.first_name+" "+self.nipple.last_name+" a "+str(self.score)

@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>{% block head_title %} Tits {% endblock %}</title>
+	</head>
+	
+	<body>
+		<h1 style="text-align:center"><a href="/">Back</a>      <a href="/account/logout/">Logout</a></h1>
+		<div style="text-align: center">
+		<form action="/search/" id="search" method="get" style="">
+			{% csrf_token %}
+			<input id="searchbar" type="text" placeholder="Search..." name="q" value=""/>
+			<input type="submit" value="Search" />
+		</form>
+		</div>
+		<h1 style="text-align:center">{{nipple.first_name}} {{nipple.last_name}}</h1>
+		
+		<div style="text-align:center"><img src="{{nipple.image.url}}" width='240' height="180" /><br /><br />
+			Average Score: {{avg_score}} / 5.0 | Votes: {{nipple.votes}}<br /><br />
+			Interests: {{nipple.interests}}<br /><br />
+			Hometown: {{nipple.hometown}} | High School: {{nipple.high_school}}
+		</div><br /><hr />
+		
+		<b>Dick Cheeses (haven't voted yet): </b>
+		{% for i in lazy_fucks %}{{i.get_full_name}}, {% endfor %}<br /><hr />
+		
+		{% if voted %}
+			<div style="text-align:center">
+				You have already voted on this freshman.<br /><br />
+				Score: {{user_opinion.score|floatformat:1}} / 5.0<br /><br />
+				Comment:<br />{{user_opinion.comment}}<br /><br />
+			<form method="post" action="/nipple/{{nipple.id}}/" >
+				{% csrf_token %}
+				 
+				<input type="hidden" name="delete" />
+				<input type="submit" value="Delete your vote" />
+			</form></div><hr />
+		{% else %}
+			<div style="text-align:center">
+				Vote on this freshman!
+				<form method="post" action="/nipple/{{nipple.id}}/">
+					{% csrf_token %}
+					<input type="radio" id="1" name="score" value="1" /><label for="1">1</label>
+					<input type="radio" id="2" name="score" value="2"/><label for="1">2</label>
+					<input type="radio" id="3" name="score" value="3" checked/><label for="1">3</label>
+					<input type="radio" id="4" name="score" value="4"/><label for="1">4</label>
+					<input type="radio" id="5" name="score" value="5"/><label for="1">5</label>
+					<br /><br />
+					<textarea id="comment" name="comment" cols="40" rows="20" >Write something you lazy shit...</textarea><br />
+					<input type="submit" value="Submit" />
+				
+				</form>
+			</div><hr />
+		{% endif %}
+		
+		<h3 style="text-align:center">Opinions</h3><hr />
+		
+		{% for i in opinions %}
+			<div style="text-align:center">
+				By: {{i.user.get_full_name}}<br /><br />
+				{% if user.is_staff %}
+					Vote: {{i.score|floatformat:1}} / 5.0<br /><br />
+				{% endif %}
+				Comment:<br /><br />{{i.comment}}
+			</div><br /><br /><hr />
+		{% endfor %}
+	</body>
