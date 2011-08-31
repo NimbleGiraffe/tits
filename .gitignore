@@ -34,3 +34,10 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+.settings
+logs
+util/dbbackups/*
+whoosh/*
+media/avatars/*
+
