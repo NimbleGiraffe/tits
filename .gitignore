@@ -36,8 +36,8 @@ Icon?
 Thumbs.db
 
 .settings
-logs
-util/dbbackups/*
-whoosh/*
-media/avatars/*
+tits/logs
+tits/util/dbbackups/*
+tits/whoosh/*
+tits/media/avatars/*
 
