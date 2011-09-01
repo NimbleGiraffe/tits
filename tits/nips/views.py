@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 @login_required
 def index(request):
+    request.session.set_expiry(299)
     nip_dict = {}
     for i in Nipple.objects.all():
         if i.votes > 0:
@@ -19,6 +20,7 @@ def index(request):
 
 @login_required
 def nipple(request, nipple_id):
+    request.session.set_expiry(299)
     nipple = Nipple.objects.get(id=int(nipple_id))
     if request.method =="POST":
         if 'delete' in request.POST:

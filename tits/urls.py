@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
+from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 import settings
 
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
      url(r'^account/', include('account.urls')),
      url(r'^nipple/', include('nips.urls')),
      url(r'^search/', include('haystack.urls')),
+     url(r'^chiphi/', direct_to_template, {'template': 'chiphi.html'})
 )
 
 if settings.USER != 'wbstueck':

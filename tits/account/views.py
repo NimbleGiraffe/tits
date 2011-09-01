@@ -19,6 +19,7 @@ def login_user(request):
 
 @login_required
 def change_password(request):
+    request.session.set_expiry(299)
     if request.method == 'POST':
         if 'old' in request.POST and 'new1' in request.POST and 'new2' in request.POST:
             if request.user.check_password(request.POST['old']):
