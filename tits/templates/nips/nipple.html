@@ -20,8 +20,8 @@
 			Hometown: {{nipple.hometown}} | High School: {{nipple.high_school}}
 		</div><br /><hr />
 		
-		<b>Dick Cheeses (haven't rated yet): </b>
-		{% for i in lazy_fucks %}{{i.get_full_name}}, {% endfor %}<br /><hr />
+		<div style="color: red"><b>Dick Cheeses (haven't rated yet): </b>
+		{% for i in lazy_fucks %}{{i.get_full_name}}, {% endfor %}<br /></div><hr />
 		
 		{% if voted %}
 			<div style="text-align:center">
@@ -36,7 +36,13 @@
 			</form></div><hr />
 		{% else %}
 			<div style="text-align:center">
-				Rate this freshman!
+				Rate this freshman!<br /><br />
+					5 - I love this guy! I want to room with him immediately!<br />
+					4 - Awesome kid, would make a fantastic brother!<br />
+					3 - Very cool guy, see no problems.<br />
+					2 - My bros like this guy. Regardless of minor concerns, I am willing to support him.<br />
+					1 - I have significant reservations, but if my bros support this kid, I can as well.<br />
+					0 - <b style="color: red">MAJOR</b> concerns. My life would be worse if this guy was my bro.<br /><br />
 				<form method="post" action="/nipple/{{nipple.id}}/">
 					{% csrf_token %}
 					<input type="radio" id="0" name="score" value="0" /><label for="1">0</label>
