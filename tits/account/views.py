@@ -10,8 +10,7 @@ def login_user(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            print "I get here"
-            user = authenticate(username=User.objects.get(email=form.cleaned_data['email']).username, password=form.cleaned_data['password'])
+            user = authenticate(username=User.objects.get(username=form.cleaned_data['username']).username, password=form.cleaned_data['password'])
             login(request, user)
             return HttpResponseRedirect('/')
     else:

@@ -15,17 +15,17 @@
 		<h1 style="text-align:center">{{nipple.first_name}} {{nipple.last_name}}</h1>
 		
 		<div style="text-align:center"><img src="{{nipple.image.url}}" width='240' height="180" /><br /><br />
-			Average Score: {{avg_score}} / 5.0 | Votes: {{nipple.votes}}<br /><br />
+			Average Rating: {{avg_score}} / 5.0 | Ratings: {{nipple.votes}}<br /><br />
 			Interests: {{nipple.interests}}<br /><br />
 			Hometown: {{nipple.hometown}} | High School: {{nipple.high_school}}
 		</div><br /><hr />
 		
-		<b>Dick Cheeses (haven't voted yet): </b>
+		<b>Dick Cheeses (haven't rated yet): </b>
 		{% for i in lazy_fucks %}{{i.get_full_name}}, {% endfor %}<br /><hr />
 		
 		{% if voted %}
 			<div style="text-align:center">
-				You have already voted on this freshman.<br /><br />
+				You have already rated this freshman.<br /><br />
 				Score: {{user_opinion.score|floatformat:1}} / 5.0<br /><br />
 				Comment:<br />{{user_opinion.comment}}<br /><br />
 			<form method="post" action="/nipple/{{nipple.id}}/" >
@@ -36,9 +36,10 @@
 			</form></div><hr />
 		{% else %}
 			<div style="text-align:center">
-				Vote on this freshman!
+				Rate this freshman!
 				<form method="post" action="/nipple/{{nipple.id}}/">
 					{% csrf_token %}
+					<input type="radio" id="0" name="score" value="0" /><label for="1">0</label>
 					<input type="radio" id="1" name="score" value="1" /><label for="1">1</label>
 					<input type="radio" id="2" name="score" value="2"/><label for="1">2</label>
 					<input type="radio" id="3" name="score" value="3" checked/><label for="1">3</label>
@@ -58,7 +59,7 @@
 			<div style="text-align:center">
 				By: {{i.user.get_full_name}}<br /><br />
 				{% if user.is_staff %}
-					Vote: {{i.score|floatformat:1}} / 5.0<br /><br />
+					Rating: {{i.score|floatformat:1}} / 5.0<br /><br />
 				{% endif %}
 				Comment:<br /><br />{{i.comment}}
 			</div><br /><br /><hr />
