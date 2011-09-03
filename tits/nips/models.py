@@ -11,6 +11,12 @@ class Nipple(models.Model):
     score = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
     
+    def get_average(self):
+        if self.votes > 0:
+            return float(self.score)/self.votes
+        else:
+            return 0.0
+    
     def __unicode__(self):
         return self.first_name + " " + self.last_name
     
