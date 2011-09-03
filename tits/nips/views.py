@@ -10,12 +10,8 @@ from django.core.exceptions import ObjectDoesNotExist
 def index(request):
     request.session.set_expiry(299)
     nip_dict = {}
-    for i in Nipple.objects.order_by('-score'):
-        if i.votes > 0:
-            nip_dict[i] = float(i.score)/i.votes
-        else:
-            nip_dict[i] = 0.0
-    return render_to_response("nips/index.html", {'nip_dict':nip_dict}, context_instance=RequestContext(request))
+    nips = Nipple.objects.order_by('-votes')
+    return render_to_response("nips/index.html", {'nips':nips}, context_instance=RequestContext(request))
 
 
 @login_required
