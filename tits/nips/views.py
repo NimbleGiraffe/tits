@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 def index(request):
     request.session.set_expiry(299)
     nip_dict = {}
-    for i in Nipple.objects.all():
+    for i in Nipple.objects.order_by('-score'):
         if i.votes > 0:
             nip_dict[i] = float(i.score)/i.votes
         else:
