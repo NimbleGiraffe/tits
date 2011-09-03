@@ -3,7 +3,7 @@ from nips.models import Nipple
 from django.core.files import File
 
 
-nipReader = csv.reader(open('freshmen.csv', 'rb'), delimiter=',')
+nipReader = csv.reader(open('freshmen_csv.csv', 'rb'), delimiter=',')
 
 for i in nipReader:
     file_name = i[0]
