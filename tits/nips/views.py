@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from nips.models import Nipple, NippleOpinion
 from django.core.exceptions import ObjectDoesNotExist
+from operator import attrgetter
 
 @login_required
 def index(request):
@@ -14,6 +15,14 @@ def index(request):
     for i in n:
         nips.append(i)
     return render_to_response("nips/index.html", {'nips':nips}, context_instance=RequestContext(request))
+
+@login_required
+def day_four(request):
+    request.session.set_expiry(299)
+    dfn = DayFourNipple.objects.all()
+    nips = [x.nipple for i in dfn]
+    return render_to_response("nips/dayfour.html", {'nips':nips}, context_instance=RequestContext(request))
+>>>>>>> eeb3ce1d6aa9c75054b1f4ccad81cbab86ed8b02
 
 
 @login_required
