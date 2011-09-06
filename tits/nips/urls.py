@@ -4,4 +4,5 @@ from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('',
     url(r'^(?P<nipple_id>\d+)/$', "nips.views.nipple"),
+    url(r'^dayfour/$', "nips.views.dayfour"),
 )

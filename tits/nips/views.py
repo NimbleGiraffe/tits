@@ -22,7 +22,6 @@ def day_four(request):
     dfn = DayFourNipple.objects.all()
     nips = [x.nipple for i in dfn]
     return render_to_response("nips/dayfour.html", {'nips':nips}, context_instance=RequestContext(request))
->>>>>>> eeb3ce1d6aa9c75054b1f4ccad81cbab86ed8b02
 
 
 @login_required
