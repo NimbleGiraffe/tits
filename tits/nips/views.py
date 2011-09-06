@@ -5,13 +5,29 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from nips.models import Nipple, NippleOpinion
 from django.core.exceptions import ObjectDoesNotExist
+from operator import attrgetter
 
 @login_required
 def index(request):
     request.session.set_expiry(299)
     nip_dict = {}
-    nips = Nipple.objects.order_by('-votes')
-    return render_to_response("nips/index.html", {'nips':nips}, context_instance=RequestContext(request))
+    nips = Nipple.objects.all()
+    for i in nips:
+        if i.votes > 0:
+            nip_dict[i] = float(i.score)/i.votes
+        else:
+            nip_dict[i] = 0.0
+    print nip_dict
+    print sorted(nip_dict, key=attrgetter("-score"))
+    print nip_dict
+    return render_to_response("nips/index.html", {'nip_dict':nip_dict}, context_instance=RequestContext(request))
+
+@login_required
+def day_four(request):
+    request.session.set_expiry(299)
+    dfn = DayFourNipple.objects.all()
+    nips = [x.nipple for i in dfn]
+    return render_to_response("nips/dayfour.html", {'nips':nips}, context_instance=RequestContext(request))
 
 
 @login_required
