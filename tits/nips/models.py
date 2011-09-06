@@ -11,7 +11,7 @@ class Nipple(models.Model):
     score = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
     
-    def get_average(self):
+    def avg(self):
         if self.votes > 0:
             return float(self.score)/self.votes
         else:
@@ -21,7 +21,7 @@ class Nipple(models.Model):
         return self.first_name + " " + self.last_name
     
     class Meta:
-        ordering = ["-score"]
+        ordering = ["-votes"]
         
 class NippleOpinion(models.Model):
     user = models.ForeignKey(User)

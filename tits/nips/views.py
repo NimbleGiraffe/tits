@@ -9,8 +9,10 @@ from django.core.exceptions import ObjectDoesNotExist
 @login_required
 def index(request):
     request.session.set_expiry(299)
-    nip_dict = {}
-    nips = Nipple.objects.order_by('-votes')
+    nips = []
+    n = Nipple.objects.all()
+    for i in n:
+        nips.append(i)
     return render_to_response("nips/index.html", {'nips':nips}, context_instance=RequestContext(request))
 
 
