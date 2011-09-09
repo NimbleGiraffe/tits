@@ -21,7 +21,7 @@ class Nipple(models.Model):
         return self.first_name + " " + self.last_name
     
     class Meta:
-        ordering = ["-votes"]
+        ordering = ["-score"]
         
 class DayFour(models.Model):
     nipple = models.ForeignKey(Nipple)
