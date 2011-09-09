@@ -40,4 +40,4 @@ tits/logs
 tits/util/dbbackups/*
 tits/whoosh/*
 tits/media/avatars/*
-
+tits/media/*
