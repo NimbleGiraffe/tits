@@ -8,6 +8,11 @@ class NippleAdmin(admin.ModelAdmin):
 class NippleOpinionAdmin(admin.ModelAdmin):
     list_display = ['user', 'nipple', 'score', 'comment']
     search_fields = ['user__first_name', 'user__last_name', 'nipple__first_name', 'nipple__last_name']
+
+class DayFourAdmin(admin.ModelAdmin):
+    list_display = ['nipple']
+
+
     
 class DayFourAdmin(admin.ModelAdmin):
     list_display = ['nipple']
