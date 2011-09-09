@@ -14,6 +14,9 @@ class DayFourAdmin(admin.ModelAdmin):
 
 
     
+class DayFourAdmin(admin.ModelAdmin):
+    list_display = ['nipple']
+    
 admin.site.register(Nipple, NippleAdmin)
 admin.site.register(NippleOpinion, NippleOpinionAdmin)
 admin.site.register(DayFour, DayFourAdmin)
