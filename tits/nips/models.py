@@ -25,6 +25,9 @@ class Nipple(models.Model):
         
 class DayFour(models.Model):
     nipple = models.ForeignKey(Nipple)
+
+    class Meta:
+        ordering = ["nipple"]
         
 class NippleOpinion(models.Model):
     user = models.ForeignKey(User)

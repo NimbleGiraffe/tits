@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from nips.models import Nipple, NippleOpinion
+from nips.models import Nipple, NippleOpinion, DayFour
 from django.core.exceptions import ObjectDoesNotExist
 from operator import attrgetter
 
@@ -12,14 +12,15 @@ def index(request):
     request.session.set_expiry(299)
     nips = []
     n = Nipple.objects.all()
-    for i in n:
+    dfn = [x.nipple for x in DayFour.objects.all()]
+    for i in dfn:
         nips.append(i)
     return render_to_response("nips/index.html", {'nips':nips}, context_instance=RequestContext(request))
 
 @login_required
 def day_four(request):
     request.session.set_expiry(299)
-    dfn = DayFourNipple.objects.all()
+    dfn = DayFour.objects.all()
     nips = [x.nipple for i in dfn]
     return render_to_response("nips/dayfour.html", {'nips':nips}, context_instance=RequestContext(request))
 
